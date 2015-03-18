@@ -47,6 +47,7 @@ tr：转换字符
 stty（set tty）命令用来控制终端。-echo选项用来关闭自动打印每个输入字符的功能;stty echo恢复;
 bin：此目录用来保存可执行文件;
 $PATH里的空项目表示当前目录;.profile将个人的bin目录列入PATH中;
+    PATH=$PATH:$HOME/bin将个人的bin目录附加到PATH
 位置参数指的是Shell脚本的命令行参数。
 grep命令用来查找操作。它会找出与第一个参数匹配的每一行;
 执行跟踪：sh -x 名称;每个执行到的命令前面一个+和一个空格;
