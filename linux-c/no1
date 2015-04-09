@@ -44,3 +44,23 @@ waitpid等待指定的子进程直到子进程返回。
 后台进程的创建思想：首先父进程创建一个子进程然后子进程杀死父进程。信号处理所有
 的工作由子进程来处理。
 文件的操作：
+linux总共用五个数字来表示文件的各种权限，00000第一位表示设置用户ID，第二位表示设置组ID，第三位表示用户自己的权限位，第四位表示组的权限，最后一位表示其他人的权限。
+每个数字可以取1（执行权限）2（写权限）4（读权限）0（什么也没有）或者是这几个的和。
+open,close ,read,write
+access:判断文件是否可以进行某个操作。R/W/X/F_OK
+要获得文件的其他属性，用stat（没有打开）或者fstat（打开的文件）
+getcwd获得当前的工作路径。
+mkdir，opendir,readdir,rewinddir,closedir,telldir,seekdir
+管道文件：pipe调用可以创建一个管道（通信缓冲区），当调用成功时，我们可以访问文件描述符fildes[0],fildes[1].其中fileds[0]是用来读的文件，而fildes[1]
+是用来写的文件描述符。实际中是通过创建一个子进程，分别写和读。
+dup2(oldfd,newfd):用oldfd文件描述符来代替newfd文件描述符，同时关闭newfd。
+																		时间：
+date命令。time,ctime
+信号：
+	  kill，raise,alarm,setitimer
+kill系统调用负责向进程发送信号sig。raise系统调用向自己发送一个sig信号。
+alarm系统调用在seconds秒后向自己发送一个SIGALRM信号，
+信号操作：
+		  sigprocmask:将指定的信号集合set加入到进程的信号阻塞集合中去，如果提供了oset那么当前
+的进程信号阻塞集合将会保存在oset里面。how决定函数的操作方式。
+消息管理：
