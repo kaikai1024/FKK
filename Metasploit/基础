@@ -10,3 +10,4 @@ Shellcode：在渗透攻击时作为攻击载荷运行的一组机器指令。
 监听器（Listenter）：用来等待连入网络连接的组件。
 Metasploit用户接口：
 MSF终端（msfconsole）是Metasploit框架中最灵活功能最丰富以及支持最好的工具之一
+,
