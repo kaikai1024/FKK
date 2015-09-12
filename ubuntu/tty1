@@ -1,0 +1,139 @@
+需要安装的软件：
+
+为了能正常显示中文：安装fbterm
+
+sudo apt-get install fbterm
+
+因为ubuntu 14.04 的framebuffer 默认是开启的  是都开启 请查看 （ls /proc/|grep fb）所以不用做其他配置，
+
+只要把用户加入video 组就可以了 否则会出现： "cann't open frame buffer device!"
+
+sudo usermod -a -G video username
+
+这里注意是sudo usermod -a -G video username 一定不要少了那个-a 这是追加 如果没有-a 你会悲剧的，等你重启后，你会登录不了系统，别问我如何知道的，
+
+看看百度的垃圾教程去吧。
+
+fbterm 安装完成之后，现在需要安装输入法，我采用了fcitx 
+
+安装：
+
+sudo apt-get install  fcitx-frontend-fbterm
+
+修改权限：
+
+sudo chmod u+s `which fbterm`
+
+到这一步 基本显示中文和中文输入基本没问题了，注意如果想在fbterm下默认使用fcitx 请将系统默认输入法配置成fcitx。
+
+否则你要需编辑：$HOME/.fbtermrc 但是直接编辑这个文件的做法我没有试过。
+
+我们可以简单写一个脚本和修改.bashrc 使得操作更便捷
+
+显示建立fbterm的快捷启动脚本： 
+
+linuxidc@ubuntu:~$ cd /usr/local/bin/
+linuxidc@ubuntu:/usr/local/bin$ sudo gedit zhterm
+
+加入如下内容：
+#export DISPLAY=:0
+#fcitx-d
+#fcitx-fbterm-helper
+eval `dbus-launch --auto-syntax`
+fcitx> /dev/null 2>&1
+fbterm-i fcitx-fbterm
+
+保存，授权：
+
+sudo chmod 755 zhterm
+
+接下来 修改$HOME/.bashrc
+
+加入：
+
+#fbterm
+[[ $(tty) == \/dev\/tty[0-9]* ]]&&zhterm
+
+OK 保存后，Ctrl+Alt+F1 进入tty1 登录后 会自动进入fbterm 模式：
+
+fbterm 安装我参考了：http://www.linuxidc.com/Linux/2015-01/111976.htm
+
+如果感觉fbterm的字体太难看了，请根据自己的请款修改$HOME/.fbtermrc 
+
+接下来 说说看电影吧，看电影，当然要神器mplayer
+
+sudo apt-get install mplayer 
+
+在fbterm 模式下 输入 
+
+mplayer -vo fbdev2 xx.avi  
+
+就可以看电影了，注意输出设备是fbdev2 。 
+
+听歌工具 推荐mocp 
+
+sudo apt-get install moc
+
+配置：
+
+编辑$HOME/.moc/config 没有新建 可解决乱码问题
+
+加入：
+
+XTermTheme = transparent-background
+ReadTags = no
+
+mocp 启动 
+
+如果启动报错  说权限的一些问题 请执行：
+
+cd $HOME/.moc/
+sudo chmod 755  config
+
+ 
+
+截图工具 推荐fbgrab
+
+sudo apt-get install fbcat
+
+无需特殊配置 fbgrab XX.png 即可截图
+
+分屏软件 推荐tmux 
+
+sudo apt-get install tmux 
+
+具体操作 请man tmux
+
+以上mocp mplayer fbgrab 都是需要在fbterm 下执行 才可以启动预期的效果。
+
+但是也有另类，就是看图软件fbi 
+
+安装
+
+sudo apt-get install fbi
+
+看图时 必须退出fbterm 模式 否则会出现：
+
+using "Droid Sans Fallback-16", pixelsize=16.67 file=/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf
+ioctl VT_GETSTATE: 对设备不适当的 ioctl 操作 (not a linux console?)
+
+最后说一下irc吧
+
+安装
+
+sudo apt-get install irssi
+
+irc 命令 网上很多，不做具体介绍。
+
+介绍一个技巧，
+
+编辑$HOME/.bashrc
+
+加入如下内容：
+
+#irc
+alias irc='irssi -c irc.freenode.net -p 6666 -n username'
+
+username 请替换成你的名字。
+
+一篇无用扯淡的文章 到这就结束了 有什么问题 欢迎留言。
