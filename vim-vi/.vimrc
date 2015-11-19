@@ -19,6 +19,9 @@ set ruler
 set cursorline
 set incsearch
 
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+
 set foldmethod=syntax
 set foldlevel=100
 set foldcolumn=5
