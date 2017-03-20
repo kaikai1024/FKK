@@ -7,11 +7,12 @@ colorscheme desert
 set foldenable
 set number
 set nobackup
-set autoindent
 set cindent
 set smartindent
 set showmatch
 set tabstop=4
+set expandtab
+set autoindent
 set softtabstop=4
 set shiftwidth=4
 set mouse=a
