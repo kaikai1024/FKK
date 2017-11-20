@@ -38,6 +38,8 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'suan/vim-instant-markdown'
+Plugin 'tomlion/vim-solidity'
+Plugin 'MikeCoder/markdown-preview.vim'
 
 call vundle#end()
 filetype plugin indent on 
