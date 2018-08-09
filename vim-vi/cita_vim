@@ -40,9 +40,11 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'tomlion/vim-solidity'
 Plugin 'MikeCoder/markdown-preview.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'bronson/vim-trailing-whitespace'
 
 call vundle#end()
-filetype plugin indent on 
+filetype plugin indent on
 " 忽视插件改变缩进,可以使用以下替代:
 "filetype plugin on
 "
